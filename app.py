@@ -8,7 +8,7 @@ app.secret_key = "super-secret-key-change-this"
 
 # ✅ SQLite locally, Supabase on Render
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-    "postgresql://postgres:Dhanush%40123@db.iiirlcdwusbfiblebznz.supabase.co:5432/postgres", "sqlite:///expense.db"
+    "postgresql://postgres:Dhanush%40123@db.iiirlcdwusbfiblebznz.supabase.co:5432/postgres"
 )
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 print("✅ DATABASE IN USE:", app.config["SQLALCHEMY_DATABASE_URI"])
