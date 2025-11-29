@@ -7,11 +7,17 @@ app = Flask(__name__)
 app.secret_key = "super-secret-key-change-this"
 
 # ✅ SQLite locally, Supabase on Render
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv(
-    "postgresql://postgres:Dhanush%40123@db.iiirlcdwusbfiblebznz.supabase.co:5432/postgres", "sqlite:///expense.db"
-)
+# ✅ FORCE SUPABASE ONLY (NO SQLITE FALLBACK)
+DATABASE_URL = os.getenv("postgresql://postgres:Dhanush%40123@db.iiirlcdwusbfiblebznz.supabase.co:5432/postgres")
+
+if not DATABASE_URL:
+    raise RuntimeError("❌ DATABASE_URL environment variable is NOT set!")
+
+app.config["SQLALCHEMY_DATABASE_URI"] = DATABASE_URL
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-print("✅ DATABASE IN USE:", app.config["SQLALCHEMY_DATABASE_URI"])
+
+print("✅ DATABASE IN USE:", DATABASE_URL)
+
 
 db = SQLAlchemy(app)
 
