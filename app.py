@@ -8,7 +8,8 @@ app.secret_key = "super-secret-key-change-this"
 
 # ✅ SQLite locally, Supabase on Render
 # ✅ FORCE SUPABASE ONLY (NO SQLITE FALLBACK)
-DATABASE_URL = os.getenv("postgresql://postgres:Dhanush%40123@db.iiirlcdwusbfiblebznz.supabase.co:5432/postgres")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
 
 if not DATABASE_URL:
     raise RuntimeError("❌ DATABASE_URL environment variable is NOT set!")
